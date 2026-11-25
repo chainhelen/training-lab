@@ -427,8 +427,7 @@ export const scarcitySteps = [
           "Ending counts in HOLD / GO / CHECK order",
           "逐批计数，依次为 HOLD / GO / CHECK",
         ),
-        validationChart(updates, t) +
-          `<table style="width:100%;text-align:center;font-variant-numeric:tabular-nums"><thead><tr><th>${t("Step", "步")}</th><th>A</th><th>B</th></tr></thead><tbody>${[0, 1, 2, 3].map((i) => `<tr><th scope="row">${i + 1}</th><td>${counts(batchIds(size, i)).join(" / ")}</td><td>${counts(batchIds(12, i)).join(" / ")}</td></tr>`).join("")}</tbody></table>`,
+        `<table style="width:100%;text-align:center;font-variant-numeric:tabular-nums"><thead><tr><th>${t("Step", "步")}</th><th>A</th><th>B</th></tr></thead><tbody>${[0, 1, 2, 3].map((i) => `<tr><th scope="row">${i + 1}</th><td>${counts(batchIds(size, i)).join(" / ")}</td><td>${counts(batchIds(12, i)).join(" / ")}</td></tr>`).join("")}</tbody></table>`,
       );
     },
     view({ subset }, t) {

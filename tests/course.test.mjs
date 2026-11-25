@@ -42,6 +42,11 @@ for (const course of courses) {
           assert.deepEqual(valuesFor(step, v), v, step.id);
           solvable ||= step.check(v);
           for (const t of languages) {
+            if (step.visual) {
+              const diagram = step.visual(v, t);
+              assert.match(diagram, /<figure/, step.id);
+              assert.doesNotMatch(diagram, /NaN|undefined|Infinity/, step.id);
+            }
             const { rows, formula } = step.view(v, t);
             assert.ok(rows.length && formula.length, step.id);
             for (const { label, value, fraction } of rows) {

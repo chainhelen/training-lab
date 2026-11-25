@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#f6f5ef" />
+    <meta
+      name="description"
+      content="Play sixteen data challenges. Build a training set, audit copies, and test a small model on unseen records."
+    />
+    <title>Corpus Arcade · Training Lab</title>
+    <link rel="icon" href="./favicon.svg" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./arcade.css" />
+  </head>
+  <body class="arcade">
+    <header>
+      <div class="top">
+        <a href="./" class="brand"
+          ><img src="./favicon.svg" alt="" width="34" height="34" /><strong
+            >Training Lab</strong
+          ></a
+        >
+        <nav class="tools">
+          <a id="lessons" href="./#learn/pretrain">Guided lessons</a
+          ><button type="button" id="language">中文</button>
+        </nav>
+      </div>
+    </header>
+    <main id="game"></main>
+    <footer>
+      <a id="games" href="/games/">Games</a
+      ><a href="https://github.com/chainhelen/training-lab">GitHub</a>
+    </footer>
+    <script type="module" src="./src/arcade.mjs"></script>
+  </body>
+</html>

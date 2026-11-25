@@ -41,6 +41,9 @@
         </aside>
         <article id="activity">
           <div class="course-title">
+            <a id="play-arcade" class="course-arcade" href="./arcade.html"
+              >Play Corpus Arcade</a
+            >
             <p class="kicker" id="position"></p>
             <h1 id="title" tabindex="-1"></h1>
             <p id="brief"></p>
@@ -74,7 +77,8 @@
           </section>
           <p class="research-note" id="finding" hidden></p>
           <div class="bottom-route">
-            <a id="back"></a><a id="source" target="_blank" rel="noopener"></a>
+            <a id="back"></a><a id="lesson-mission" hidden></a
+            ><a id="source" target="_blank" rel="noopener"></a>
           </div>
         </article>
       </div>
@@ -89,6 +93,7 @@
     </dialog>
     <footer>
       <a href="/games/neural-atelier/">Neural Atelier · 神经工坊</a
+      ><a href="./arcade.html" id="arcade-footer">Corpus Arcade</a
       ><a href="https://github.com/chainhelen/training-lab">GitHub</a>
     </footer>
     <script type="module" src="./src/course.mjs"></script>

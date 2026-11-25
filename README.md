@@ -4,6 +4,17 @@
 
 Train a small rover controller one step at a time. It can answer with three tokens: `HOLD`, `GO`, and `CHECK`. Choose the data or reward, apply a gradient update, and watch each command's probability change. The game runs entirely in the browser and saves checkpoints on the device. English and Chinese are available on desktop and mobile.
 
+## Corpus Arcade
+
+[Play the 16 pretraining missions](https://hacking.pub/games/training-lab/arcade.html). Each deal starts with a small budget or a set of records on the table. Play a card to change the board, then submit the result. You can undo a move, replay the same deal, or try a new deal. Cleared missions and unfinished runs are saved in this browser.
+
+| Station               | One challenge to try                                                                                                                                                                                        |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Data expedition       | Open a fresh packet or reread an old one. Spend four updates and see which commands the model learned. [Play](https://hacking.pub/games/training-lab/arcade.html#play/reread-or-open)                       |
+| Corpus inspection     | Move reports between training and validation. Keep all reports from each trip together while fulfilling the validation quota. [Play](https://hacking.pub/games/training-lab/arcade.html#play/split-by-trip) |
+| Training control room | Decide when to spend the two old batches among four new ones. Check both final command probabilities. [Play](https://hacking.pub/games/training-lab/arcade.html#play/keep-old-skill)                        |
+| Experiment design     | Check a one-run claim on paired training sets. Draw your conclusion from matched held-out losses. [Play](https://hacking.pub/games/training-lab/arcade.html#play/paired-report)                             |
+
 ## Guided route
 
 Start with the reading boundary in a four-word log. Move it one word and watch the prediction target change. The course builds from that example through 50 hands-on steps.
@@ -61,7 +72,7 @@ Open [the local game](http://127.0.0.1:8000). Run the numerical tests with Node.
 node --test tests/*.test.mjs
 ```
 
-The [course catalog](src/course-data.mjs) connects the bilingual exercises to the guided interface. The full experiments use the [gradient implementation](src/trainer.mjs), [mission rules](src/lab.mjs), and [teaching notes](src/lessons.mjs). Serve both HTML files, the root CSS files, `favicon.svg`, and the `src` directory for a static deployment.
+The [course catalog](src/course-data.mjs) connects the bilingual exercises to the guided interface. The full experiments use the [gradient implementation](src/trainer.mjs), [mission rules](src/lab.mjs), and [teaching notes](src/lessons.mjs). Serve the root HTML files, the root CSS files, `favicon.svg`, and the `src` directory for a static deployment.
 
 ## Read the original work
 

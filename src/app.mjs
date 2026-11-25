@@ -319,6 +319,8 @@ function render() {
     returnCourse.href = "./#learn/" + id;
   }
   $("games").textContent = t("Games", "游戏大厅");
+  if ($("arcade-footer"))
+    $("arcade-footer").textContent = t("Corpus Arcade", "语料挑战场");
   $("guide").textContent = t("Field notes", "训练手册");
   $("language").textContent = t("中文", "English");
   $("chapters").innerHTML = ids

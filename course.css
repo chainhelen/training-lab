@@ -420,3 +420,26 @@ fieldset.control {
   font-size: 0.94rem;
   max-width: 80ch;
 }
+
+.course-arcade {
+  float: right;
+  margin: 0 0 6px 12px;
+  padding: 6px 10px;
+  border: 1px solid #b7a4cd;
+  border-radius: 6px;
+  background: var(--pale-violet);
+  color: var(--purple);
+  font-size: 0.86rem;
+  font-weight: 630;
+  text-decoration: none;
+}
+.course-arcade:hover {
+  border-color: var(--purple);
+}
+@media (max-width: 600px) {
+  .course-arcade {
+    float: none;
+    display: inline-block;
+    margin: 0 0 10px;
+  }
+}

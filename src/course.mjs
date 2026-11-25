@@ -150,6 +150,14 @@ function nav() {
   $("source").textContent = ref.label;
   $("bench-link").textContent = t("Full experiment", "综合实验");
   $("bench-link").href = capstone(course);
+  const missionLink = $("lesson-mission");
+  if (missionLink) {
+    missionLink.hidden = course.id !== "pretrain";
+    missionLink.textContent = t("Play a related mission", "用这一节的知识闯关");
+    missionLink.href = "./arcade.html#lesson/" + step.id;
+  }
+  if ($("arcade-footer"))
+    $("arcade-footer").textContent = t("Corpus Arcade", "语料挑战场");
 }
 function controls() {
   $("controls").innerHTML = step.controls
@@ -209,6 +217,11 @@ function render() {
   $("language").textContent = t("中文", "English");
   $("games").textContent = t("Games", "游戏大厅");
   $("open-map").textContent = t("Course map", "学习路线图");
+  const arcade = $("play-arcade");
+  if (arcade) {
+    arcade.hidden = course.id !== "pretrain";
+    arcade.textContent = t("Play Corpus Arcade ›", "玩语料挑战场 ›");
+  }
   $("title").textContent = text(step.title);
   $("brief").textContent = text(step.intro);
   $("task").textContent = text(step.task);

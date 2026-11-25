@@ -2,8 +2,32 @@ import { pretrainSteps } from "./guide-pretrain.mjs";
 import { sftSteps, dpoSteps } from "./guide-preference.mjs";
 import { rlSteps, grpoSteps } from "./guide-reinforcement.mjs";
 
+import { budgetSteps } from "./pretrain-budget.mjs";
+import { scarcitySteps } from "./pretrain-scarcity.mjs";
+import { qualitySteps } from "./pretrain-quality.mjs";
+import { replicateStep } from "./pretrain-replicates.mjs";
+
+const pretrainingTopics = [
+  { name: ["Next-token basics", "从预测到更新"], steps: pretrainSteps },
+  { name: ["Counting training tokens", "怎么算训练量"], steps: budgetSteps },
+  { name: ["When data runs short", "数据变少了"], steps: scarcitySteps },
+  {
+    name: ["Copies, splits and mixtures", "重复、泄漏与配比"],
+    steps: qualitySteps,
+  },
+  {
+    name: ["Repeat the experiment", "换一批资料再验证"],
+    steps: [replicateStep],
+  },
+];
+
 export const courses = [
-  { id: "pretrain", name: ["Pretraining", "预训练"], steps: pretrainSteps },
+  {
+    id: "pretrain",
+    name: ["Pretraining", "预训练"],
+    topics: pretrainingTopics,
+    steps: pretrainingTopics.flatMap((t) => t.steps),
+  },
   { id: "sft", name: ["SFT", "SFT"], steps: sftSteps },
   { id: "dpo", name: ["DPO", "DPO"], steps: dpoSteps },
   { id: "rl", name: ["RL · REINFORCE", "RL · REINFORCE"], steps: rlSteps },

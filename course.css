@@ -395,3 +395,28 @@ fieldset.control {
   align-content: center;
   overflow-wrap: anywhere;
 }
+.course-rail .route-topic {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  border-radius: 0;
+}
+.course-rail .route-topic summary {
+  color: var(--ink);
+  font-size: 0.91rem;
+  padding: 9px 12px;
+}
+.route-topic summary small {
+  color: var(--muted);
+  font-size: 0.74rem;
+  white-space: nowrap;
+}
+.course-rail .route-topic nav {
+  padding: 0 0 5px;
+}
+.research-note {
+  border-inline-start: 3px solid var(--violet);
+  padding: 0 12px;
+  color: var(--muted);
+  font-size: 0.94rem;
+  max-width: 80ch;
+}

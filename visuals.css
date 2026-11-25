@@ -342,3 +342,108 @@
   margin: 8px 0 0;
   font-size: 0.8rem;
 }
+.shift-grid {
+  display: grid;
+  grid-template-columns: auto repeat(var(--columns), minmax(0, 1fr));
+  align-items: center;
+  gap: 4px;
+}
+.shift-grid small {
+  font: 600 0.83rem var(--mono);
+}
+.shift-grid .pic-token {
+  text-align: center;
+  padding: 4px 1px;
+  font-size: 0.84rem;
+}
+.budget-grid {
+  display: grid;
+  gap: 4px;
+}
+.budget-grid > div,
+.accum-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.budget-grid i {
+  width: 0.82rem;
+  height: 0.82rem;
+  border-radius: 3px;
+  background: var(--violet);
+}
+.accum-strip .budget-grid {
+  border: 1px solid var(--strong-rule);
+  padding: 5px;
+  border-radius: 5px;
+}
+.seed-tiles {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 4px;
+}
+.seed-tiles div {
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  display: grid;
+  text-align: center;
+  background: var(--pale-teal);
+  padding: 4px;
+}
+.seed-tiles small {
+  color: var(--muted);
+  font-size: 0.73rem;
+}
+.seed-tiles b {
+  font: 600 0.94rem var(--mono);
+}
+.seed-tiles .missing {
+  background: var(--pale-ochre);
+}
+.seed-tiles .chosen {
+  outline: 2px solid var(--purple);
+  outline-offset: -1px;
+}
+.loss-plot {
+  width: 100%;
+  display: block;
+  max-height: 190px;
+}
+.loss-plot line {
+  stroke: var(--rule);
+  stroke-width: 1;
+}
+.loss-plot text {
+  font: 10px var(--mono);
+  fill: var(--muted);
+}
+.loss-plot polyline {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+}
+.loss-plot circle {
+  fill: currentColor;
+}
+.loss-plot .curve-a,
+.loss-key span:first-child {
+  color: var(--purple);
+}
+.loss-plot .curve-b,
+.loss-key span:nth-child(2) {
+  color: var(--teal);
+}
+.loss-plot .curve-b polyline {
+  stroke-dasharray: 4 3;
+}
+.loss-key {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  font-size: 0.8rem;
+  margin: 0 0 0.5rem;
+}
+.loss-key span {
+  font-weight: 650;
+}

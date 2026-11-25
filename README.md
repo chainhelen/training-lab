@@ -6,17 +6,26 @@ Train a small rover controller one step at a time. It can answer with three toke
 
 ## Guided route
 
-Start with the reading boundary in a four-word log. Move it one word and watch the prediction target change. The course builds from that example through 34 hands-on steps.
+Start with the reading boundary in a four-word log. Move it one word and watch the prediction target change. The course builds from that example through 50 hands-on steps.
 
 | Chapter                                                                           | Steps | What you work out                                                                                                                                                  |
 | --------------------------------------------------------------------------------- | ----: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [Pretraining](https://hacking.pub/games/training-lab/#learn/pretrain/next-target) |     8 | Identify the next token, count the endings, turn scores into chances, compute token and batch loss, update a score, then compare checkpoints on held-out data.     |
+| [Pretraining](https://hacking.pub/games/training-lab/#learn/pretrain/next-target) |    24 | Predict the next token, update three scores and test what happens when data gets scarce, duplicated or unevenly sampled.                                           |
 | [SFT](https://hacking.pub/games/training-lab/#learn/sft/write-demo)               |     5 | Write the demonstration, select which tokens contribute to loss, score its answer, update the model, and save a checkpoint.                                        |
 | [DPO](https://hacking.pub/games/training-lab/#learn/dpo/pair-replies)             |     5 | Label a pair, divide its probabilities, compare the ratio with a frozen reference, apply β, and update the two scores.                                             |
 | [RL with REINFORCE](https://hacking.pub/games/training-lab/#learn/rl/draw-one)    |     6 | Draw a reply, score it, try a misleading reward, subtract a baseline, update the policy, and draw again.                                                           |
 | [GRPO](https://hacking.pub/games/training-lab/#learn/grpo/one-prompt-group)       |    10 | Sample a group, score each reply, center and scale rewards, and try an all-tie group. Then explore policy ratios, clipping, KL and the group-size setting in verl. |
 
 Move a control to see the numbers and formula change together. **Save for comparison** keeps the current result on screen while you try a second setting. **Check this step** gives feedback and opens the next step when you meet the goal. You can also explore the steps in any order from the chapter menu. Returning to the game restores your place, settings, and comparisons in that browser.
+
+## What changes when you have less pretraining data?
+
+The pretraining chapter starts with eight steps on prediction, loss and parameter updates. Use the remaining sixteen steps to investigate the training data.
+
+- **Count the budget (3 steps).** Mark the target positions in a text window, count how many a batch supplies, and work out how many updates fit within 96 target reads. [Count targets](https://hacking.pub/games/training-lab/#learn/pretrain/count-targets)
+- **Shrink or repeat the corpus (6 steps).** Keep three of twelve records and check which endings disappear. Then read three records four times or twelve records once. Each run trains on twelve target positions. The browser updates the model, freezes its scores and measures loss on the same six held-out records. [Shrink the corpus](https://hacking.pub/games/training-lab/#learn/pretrain/shrink-corpus) · [Compare equal budgets](https://hacking.pub/games/training-lab/#learn/pretrain/fixed-read-budget)
+- **Inspect the data (6 steps).** Find exact copies, measure how copying a line changes its training weight, and remove overlap between training and evaluation. Change the mix of two domains and check each domain’s loss. [Find the copies](https://hacking.pub/games/training-lab/#learn/pretrain/exact-copies)
+- **Try twelve draws (1 experiment).** Choose the number of distinct records in each run. Keep spending 48 target reads on 16 updates and see how often the draws miss CHECK. Compare the smallest, median and largest loss on the same 24 held-out records. [Compare twelve training sets](https://hacking.pub/games/training-lab/#learn/pretrain/compare-subsets)
 
 ## Full experiments
 
@@ -56,6 +65,8 @@ The [course catalog](src/course-data.mjs) connects the bilingual exercises to th
 
 ## Read the original work
 
+- Examine the fixed-compute experiments on repeated data and their released training material. [Scaling Data-Constrained Language Models](https://papers.neurips.cc/paper_files/paper/2023/hash/9d89448b63ce1e2e8dc7af72c984c196-Abstract-Conference.html) · [datablations](https://github.com/huggingface/datablations)
+- Explore the studies behind the exercises on duplicates, train–validation overlap, and domain weighting. [Lee et al. on deduplication](https://aclanthology.org/2022.acl-long.577/) · [DoReMi](https://arxiv.org/abs/2305.10429)
 - Follow a text batch from inputs to shifted target tokens in [nanoGPT](https://github.com/karpathy/nanoGPT/blob/master/train.py).
 - Read about human-written demonstrations in [InstructGPT](https://arxiv.org/abs/2203.02155) and preference pairs in the [DPO paper](https://arxiv.org/abs/2305.18290).
 - Compare [policy gradients](https://spinningup.openai.com/en/latest/spinningup/rl_intro3.html), the [original GRPO paper](https://arxiv.org/abs/2402.03300), and the [verl GRPO guide](https://verl.readthedocs.io/en/latest/algo/grpo.html).

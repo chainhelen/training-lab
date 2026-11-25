@@ -102,14 +102,27 @@ function nav() {
   ).length;
   $("rail-title").textContent =
     t("Chapter steps", "本章步骤") + " · " + n + "/" + total;
-  $("route-list").innerHTML = `<nav>${course.steps
-    .map((s, i) => {
-      const done = visited.has(lessonKey(course, s));
-      return `<a href="${lessonUrl(course, s)}" ${s === step ? 'aria-current="step"' : ""} class="${done ? "finished" : ""}"><span class="route-number">${done ? "✓" : String(i + 1).padStart(2, "0")}</span>${html(text(s.title))}</a>`;
-    })
-    .join(
-      "",
-    )}</nav><a class="capstone" href="${capstone(course)}">${t("Full experiment", "本章综合实验")} · ${text(course.name)}</a>`;
+  const links = (steps) =>
+    steps
+      .map((s) => {
+        const done = visited.has(lessonKey(course, s));
+        const number = String(course.steps.indexOf(s) + 1).padStart(2, "0");
+        return `<a href="${lessonUrl(course, s)}" ${s === step ? 'aria-current="step"' : ""} class="${done ? "finished" : ""}"><span class="route-number">${done ? "✓" : number}</span>${html(text(s.title))}</a>`;
+      })
+      .join("");
+  const topics = course.topics
+    ? course.topics
+        .map((topic) => {
+          const completed = topic.steps.filter((s) =>
+            visited.has(lessonKey(course, s)),
+          ).length;
+          return `<details class="route-topic" ${topic.steps.includes(step) ? "open" : ""}><summary>${html(text(topic.name))} <small>${completed}/${topic.steps.length}</small></summary><nav>${links(topic.steps)}</nav></details>`;
+        })
+        .join("")
+    : `<nav>${links(course.steps)}</nav>`;
+  $("route-list").innerHTML =
+    topics +
+    `<a class="capstone" href="${capstone(course)}">${t("Full experiment", "本章综合实验")} · ${text(course.name)}</a>`;
   $("position").textContent =
     text(course.name) +
     " · " +
@@ -127,7 +140,12 @@ function nav() {
     $("back").textContent =
       t("Previous · ", "上一步 · ") + text(previous.title);
   }
-  const ref = lessons.find((l) => l.id === course.id).source;
+  const ref = step.source ?? lessons.find((l) => l.id === course.id).source;
+  const finding = $("finding");
+  if (finding) {
+    finding.hidden = !step.finding;
+    finding.textContent = step.finding ? text(step.finding) : "";
+  }
   $("source").href = ref.url;
   $("source").textContent = ref.label;
   $("bench-link").textContent = t("Full experiment", "综合实验");
@@ -157,7 +175,9 @@ function results() {
       })
       .join("");
   $("guided-visual").innerHTML =
-    renderGroupVisual(step, values, t) || renderVisual(step, values, t);
+    step.visual?.(values, t) ||
+    renderGroupVisual(step, values, t) ||
+    renderVisual(step, values, t);
   $("readout").innerHTML =
     rows(now.rows, before?.rows) +
     (before

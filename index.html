@@ -5,85 +5,91 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta
       name="description"
-      content="Five hands-on experiments in LLM training. Change the corpus, demonstrations, preferences and rewards, then watch a small policy learn."
+      content="Learn how language models train, one decision at a time. Work through pretraining, SFT, DPO, policy gradients and GRPO with interactive numerical experiments."
     />
-    <meta name="theme-color" content="#f8f8f3" />
+    <meta name="theme-color" content="#f6f5ef" />
     <link rel="icon" href="./favicon.svg" />
     <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./course.css" />
+    <link rel="stylesheet" href="./visuals.css" />
     <title>Training Lab · 大模型训练场</title>
   </head>
-  <body>
+  <body class="course">
     <header>
       <div class="top">
         <a class="brand" href="./"
-          ><img src="./favicon.svg" alt="" width="34" height="34" /><strong
+          ><img src="./favicon.svg" width="34" height="34" alt="" /><strong
             >Training Lab</strong
           ></a
         >
         <nav class="tools">
-          <a id="games" href="/games/">Games</a
-          ><button id="guide">Field notes</button
+          <a href="/games/" id="games">Games</a
+          ><a href="./workbench.html" id="bench-link">Training bench</a
           ><button id="language">中文</button>
         </nav>
       </div>
     </header>
     <main>
-      <nav class="chapters" id="chapters" aria-label="Experiments"></nav>
-      <section class="hero">
-        <div>
-          <p class="kicker" id="kicker"></p>
-          <h1 id="title"></h1>
-          <p id="brief"></p>
-        </div>
-        <span class="progress" id="progress"></span>
-      </section>
-      <div class="bench">
-        <section class="panel">
-          <div class="panel-head">
-            <h2 id="inputs-title"></h2>
-            <span class="small" id="method"></span>
+      <nav id="chapters" class="chapters" aria-label="Chapters"></nav>
+      <div class="course-shell">
+        <aside class="course-rail">
+          <details id="rail">
+            <summary id="rail-title"></summary>
+            <div id="route-list"></div>
+          </details>
+          <button id="open-map" aria-haspopup="dialog"></button>
+        </aside>
+        <article id="activity">
+          <div class="course-title">
+            <p class="kicker" id="position"></p>
+            <h1 id="title" tabindex="-1"></h1>
+            <p id="brief"></p>
           </div>
-          <div class="panel-body">
-            <div class="signal">
-              <small id="prompt-label"></small>
-              <p id="prompt"></p>
-            </div>
-            <div id="inputs"></div>
+          <div class="micro-bench">
+            <section class="panel">
+              <div class="panel-head"><h2 id="task-label"></h2></div>
+              <div class="panel-body">
+                <p class="task" id="task"></p>
+                <div id="controls"></div>
+              </div>
+            </section>
+            <section class="panel">
+              <div class="panel-head">
+                <h2 id="results-label"></h2>
+                <button id="pin"></button>
+              </div>
+              <div class="panel-body">
+                <div id="guided-visual"></div>
+                <div id="readout"></div>
+                <pre class="calculation" id="calculation"></pre>
+              </div>
+            </section>
+          </div>
+          <section class="response">
+            <div id="feedback" aria-live="polite"></div>
             <div class="actions">
-              <button id="step" class="primary"></button
-              ><button id="sample"></button><button id="reset"></button>
+              <button class="primary" id="check"></button
+              ><button id="next" hidden></button><button id="reset"></button>
             </div>
+          </section>
+          <div class="bottom-route">
+            <a id="back"></a><a id="source" target="_blank" rel="noopener"></a>
           </div>
-        </section>
-        <section class="panel">
-          <div class="panel-head">
-            <h2 id="policy-title"></h2>
-            <span id="step-num" class="small"></span>
-          </div>
-          <div class="panel-body">
-            <p class="muted small" id="chart-caption"></p>
-            <div class="chart" id="chart"></div>
-            <div id="stats" class="stats"></div>
-            <div id="history"></div>
-          </div>
-        </section>
+        </article>
       </div>
-      <section class="goal">
-        <p class="kicker" id="goal-label"></p>
-        <h2 id="goal-text"></h2>
-        <p id="feedback" aria-live="polite"></p>
-        <div id="advance" class="actions"></div>
-      </section>
-      <section class="notes" id="notes"></section>
     </main>
+    <dialog id="course-map" aria-labelledby="map-title">
+      <div class="map-head">
+        <h2 id="map-title"></h2>
+        <button id="close-map" autofocus></button>
+      </div>
+      <p id="map-caption"></p>
+      <div id="map-route"></div>
+    </dialog>
     <footer>
       <a href="/games/neural-atelier/">Neural Atelier · 神经工坊</a
       ><a href="https://github.com/chainhelen/training-lab">GitHub</a>
     </footer>
-    <dialog id="manual">
-      <button class="close" id="close" aria-label="Close">×</button>
-      <div id="guide-body"></div>
-    </dialog>
-    <script type="module" src="./src/app.mjs"></script>
+    <script type="module" src="./src/course.mjs"></script>
   </body>
 </html>

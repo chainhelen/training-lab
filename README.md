@@ -4,6 +4,24 @@
 
 Train a small rover controller one step at a time. It can answer with three tokens: `HOLD`, `GO`, and `CHECK`. Choose the data or reward, apply a gradient update, and watch each command's probability change. The game runs entirely in the browser and saves checkpoints on the device. English and Chinese are available on desktop and mobile.
 
+## Guided route
+
+Start with the reading boundary in a four-word log. Move it one word and watch the prediction target change. The course builds from that example through 34 hands-on steps.
+
+| Chapter                                                                           | Steps | What you work out                                                                                                                                                  |
+| --------------------------------------------------------------------------------- | ----: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [Pretraining](https://hacking.pub/games/training-lab/#learn/pretrain/next-target) |     8 | Identify the next token, count the endings, turn scores into chances, compute token and batch loss, update a score, then compare checkpoints on held-out data.     |
+| [SFT](https://hacking.pub/games/training-lab/#learn/sft/write-demo)               |     5 | Write the demonstration, select which tokens contribute to loss, score its answer, update the model, and save a checkpoint.                                        |
+| [DPO](https://hacking.pub/games/training-lab/#learn/dpo/pair-replies)             |     5 | Label a pair, divide its probabilities, compare the ratio with a frozen reference, apply β, and update the two scores.                                             |
+| [RL with REINFORCE](https://hacking.pub/games/training-lab/#learn/rl/draw-one)    |     6 | Draw a reply, score it, try a misleading reward, subtract a baseline, update the policy, and draw again.                                                           |
+| [GRPO](https://hacking.pub/games/training-lab/#learn/grpo/one-prompt-group)       |    10 | Sample a group, score each reply, center and scale rewards, and try an all-tie group. Then explore policy ratios, clipping, KL and the group-size setting in verl. |
+
+Move a control to see the numbers and formula change together. **Save for comparison** keeps the current result on screen while you try a second setting. **Check this step** gives feedback and opens the next step when you meet the goal. You can also explore the steps in any order from the chapter menu. Returning to the game restores your place, settings, and comparisons in that browser.
+
+## Full experiments
+
+Each chapter ends with an open-ended training bench. Guided lessons use fixed examples so you can replay a calculation. The full benches let you change data, take multiple gradient steps, and carry your saved model into later experiments.
+
 | Experiment                                | What you control                                                   | What you can observe                                                                                                                             |
 | ----------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Pretraining                               | Add log lines to a next-token corpus                               | The tokens' frequencies shape the next-token distribution.                                                                                       |
@@ -34,7 +52,7 @@ Open [the local game](http://127.0.0.1:8000). Run the numerical tests with Node.
 node --test tests/*.test.mjs
 ```
 
-The gradient implementation lives in [src/trainer.mjs](src/trainer.mjs), mission rules in [src/lab.mjs](src/lab.mjs), and bilingual teaching notes in [src/lessons.mjs](src/lessons.mjs). Static deployments need only `index.html`, `style.css`, `favicon.svg`, and the `src` directory.
+The [course catalog](src/course-data.mjs) connects the bilingual exercises to the guided interface. The full experiments use the [gradient implementation](src/trainer.mjs), [mission rules](src/lab.mjs), and [teaching notes](src/lessons.mjs). Serve both HTML files, the root CSS files, `favicon.svg`, and the `src` directory for a static deployment.
 
 ## Read the original work
 

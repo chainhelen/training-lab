@@ -1,0 +1,344 @@
+/* Each figure lives inside the calculation panel and scales to its width. */
+.lab-picture {
+  --pic-ink: #302b38;
+  --pic-purple: #6542a2;
+  --pic-green: #226259;
+  --pic-line: #cccfc6;
+  background: #f8f8f2;
+  border: 1px solid #dedfd4;
+  border-radius: 8px;
+  color: var(--pic-ink);
+  margin: 0 0 14px;
+  padding: 13px 14px;
+}
+.lab-picture figcaption {
+  font-size: 0.87rem;
+  font-weight: 680;
+  margin-bottom: 10px;
+}
+.pic-strip,
+.pic-legend,
+.pic-timeline,
+.pic-chips {
+  display: flex;
+  align-items: center;
+}
+.pic-strip {
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.pic-token,
+.pic-root,
+.pic-stop {
+  font: 600 0.95rem/1.3 var(--mono, monospace);
+}
+.pic-token {
+  position: relative;
+  border-radius: 4px;
+  padding: 6px 8px;
+}
+.pic-token.read,
+.pic-key i.read,
+.pic-stop.loaded,
+.pic-key i.hold,
+.pic-chips i.hold {
+  background: #e4d9f3;
+  color: #4b3672;
+  border: 1px solid #ac94c6;
+}
+.pic-token.target,
+.pic-key i.target,
+.pic-key i.go,
+.pic-chips i.go {
+  background: #c5e5d9;
+  color: #24473b;
+  border: 1px solid #80b39d;
+}
+.pic-token.later,
+.pic-key i.later {
+  background: #f0f0ea;
+  color: #66685e;
+  border: 1px dashed #bfc0b7;
+}
+.pic-cut {
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  left: -5px;
+  border-left: 2px solid var(--pic-green);
+}
+.pic-legend {
+  gap: 9px;
+  flex-wrap: wrap;
+  margin-top: 9px;
+  font-size: 0.8rem;
+}
+.pic-key {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.pic-key i,
+.pic-chips i {
+  display: inline-block;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 3px;
+}
+.pic-stack {
+  display: grid;
+  gap: 4px;
+}
+.pic-log {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto minmax(4.2rem, auto);
+  gap: 8px;
+  align-items: center;
+  font-size: 0.84rem;
+  border: 1px solid var(--pic-line);
+  border-radius: 4px;
+  padding: 3px 7px;
+}
+.pic-log b,
+.pic-span b {
+  font-family: var(--mono, monospace);
+}
+.pic-log .pic-choice {
+  text-align: right;
+}
+.pic-choice,
+.pic-span small,
+.pic-log small,
+.pic-odds small {
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+.pic-log.included,
+.pic-span.included,
+.pic-span.saved {
+  border-color: #acbcaa;
+  background: #eef5eb;
+  color: #324e37;
+}
+.pic-log.excluded,
+.pic-span.excluded {
+  border-color: #cecec4;
+  background: #f3f2ec;
+  color: #686a60;
+  border-style: dashed;
+}
+.pic-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+.pic-span {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: space-between;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  border: 1px solid var(--pic-line);
+  border-radius: 5px;
+  padding: 7px 9px;
+}
+.pic-span.live {
+  background: #eee8f5;
+  border-color: #c5b4d8;
+}
+.pic-span.alt {
+  background: #fbefe3;
+  border-color: #d6bd96;
+}
+.pic-span b {
+  font-size: 0.95rem;
+  line-height: 1.3;
+}
+.pic-timeline {
+  gap: 8px;
+  margin: 0 0 8px;
+}
+.pic-stop {
+  position: relative;
+  border-radius: 12px;
+  padding: 1px 9px;
+  background: #f0f0e9;
+  border: 1px solid var(--pic-line);
+}
+.pic-stop + .pic-stop::before {
+  position: absolute;
+  left: -9px;
+  top: 50%;
+  width: 8px;
+  content: "";
+  border-top: 1px solid var(--pic-line);
+}
+.pic-root {
+  text-align: center;
+  width: max-content;
+  max-width: 100%;
+  margin: 0 auto;
+  border: 1px solid #bbb1c6;
+  border-radius: 4px;
+  background: #eee9f4;
+  padding: 5px 10px;
+}
+.pic-fork {
+  height: 13px;
+  width: 50%;
+  margin: 7px auto 0;
+  border: 1px solid #a6a99e;
+  border-bottom: 0;
+  position: relative;
+}
+.pic-fork::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  height: 8px;
+  border-left: 1px solid #a6a99e;
+}
+.pic-odds {
+  display: grid;
+  grid-template-columns: 5rem 1fr auto;
+  gap: 7px;
+  align-items: center;
+  margin: 5px 0;
+}
+.pic-odds b {
+  font: 600 0.88rem var(--mono, monospace);
+}
+.pic-chips {
+  gap: 3px;
+  flex-wrap: wrap;
+}
+.pic-chips span {
+  font-family: var(--mono, monospace);
+  padding: 0 2px;
+}
+@media (max-width: 460px) {
+  .lab-picture {
+    padding: 11px 9px;
+  }
+  .pic-strip {
+    gap: 5px;
+  }
+  .pic-token {
+    padding: 4px 6px;
+  }
+  .pic-log {
+    gap: 5px;
+    grid-template-columns: auto minmax(0, 1fr) auto auto;
+  }
+  .pic-odds {
+    grid-template-columns: 3.5rem 1fr auto;
+  }
+  .pic-span {
+    padding: 6px;
+  }
+  .pic-log .pic-choice {
+    font-size: 0.72rem;
+  }
+}
+
+.pic-branch {
+  text-align: center;
+  color: var(--pic-green);
+}
+.pic-draws {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(3.2rem, 1fr));
+  gap: 4px;
+}
+.pic-draws li {
+  display: grid;
+  padding: 5px;
+  gap: 2px;
+  justify-items: center;
+  background: #eef5eb;
+  border: 1px solid #acbcaa;
+  border-radius: 4px;
+  font: 600 0.8rem var(--mono, monospace);
+}
+.pic-draws small {
+  font-size: 0.7rem;
+}
+
+.group-trace {
+  container-type: inline-size;
+}
+.group-trace-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+@container (min-width: 35rem) {
+  .group-trace-grid:has(:nth-child(5)) {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+}
+.group-trace-card {
+  display: grid;
+  align-content: start;
+  justify-items: center;
+  gap: 3px;
+  padding: 6px 1px;
+  border: 1px solid var(--pic-line);
+  border-radius: 5px;
+  background: #fff;
+  font: 600 0.76rem/1.3 var(--mono, monospace);
+}
+.group-trace-card[aria-current] {
+  border-color: var(--pic-purple);
+  box-shadow: inset 0 0 0 1px var(--pic-purple);
+}
+.group-trace-card small {
+  font-size: 0.7rem;
+}
+.group-trace-reward {
+  padding: 0 4px;
+  border-radius: 3px;
+  background: #f0f0ea;
+}
+.group-trace-reward[data-points="1"] {
+  background: #c5e5d9;
+  color: #24473b;
+}
+.group-trace-axis {
+  position: relative;
+  width: 78%;
+  height: 6px;
+  margin-top: 2px;
+  background: #efeee8;
+}
+.group-trace-axis::before {
+  content: "";
+  position: absolute;
+  inset: -1px auto -1px 50%;
+  width: 1px;
+  background: #706b69;
+}
+.group-trace-axis i {
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+  background: #4d8578;
+}
+.group-trace-axis i.right {
+  background: #896aa9;
+}
+.group-trace-cap {
+  color: var(--pic-purple);
+}
+.group-trace-legend {
+  margin: 8px 0 0;
+  font-size: 0.8rem;
+}

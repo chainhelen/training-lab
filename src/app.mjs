@@ -31,7 +31,11 @@ function read() {
   }
 }
 const saved = read();
-let lang = saved.lang === "zh" ? "zh" : "en";
+let preferredLanguage;
+try {
+  preferredLanguage = localStorage.getItem("training-lab-language");
+} catch {}
+let lang = (preferredLanguage || saved.lang) === "zh" ? "zh" : "en";
 const t = (en, zh) => (lang === "en" ? en : zh);
 const txt = (o) => o[lang];
 const name = (id) =>
@@ -309,6 +313,11 @@ function render() {
     probs = probabilities(s.logits);
   document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
   document.title = txt(lesson.title) + " · Training Lab";
+  const returnCourse = $("return-course");
+  if (returnCourse) {
+    returnCourse.textContent = t("Guided lessons", "拆解练习");
+    returnCourse.href = "./#learn/" + id;
+  }
   $("games").textContent = t("Games", "游戏大厅");
   $("guide").textContent = t("Field notes", "训练手册");
   $("language").textContent = t("中文", "English");
@@ -425,6 +434,9 @@ document.addEventListener("click", (ev) => {
       return;
     case "language":
       lang = lang === "en" ? "zh" : "en";
+      try {
+        localStorage.setItem("training-lab-language", lang);
+      } catch {}
       break;
     case "step":
       s.status = update(s);
@@ -442,9 +454,15 @@ document.addEventListener("click", (ev) => {
       s.counts = [0, 0, 0];
       s.status = "ready";
       break;
-    case "next":
-      navigate(ids[ids.indexOf(id) + 1]);
+    case "next": {
+      const next = ids[ids.indexOf(id) + 1];
+      if (new URLSearchParams(location.search).has("course")) {
+        location.assign("./#learn/" + next);
+      } else {
+        navigate(next);
+      }
       return;
+    }
     default:
       return;
   }

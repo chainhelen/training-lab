@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      name="description"
+      content="Five hands-on experiments in LLM training. Change the corpus, demonstrations, preferences and rewards, then watch a small policy learn."
+    />
+    <meta name="theme-color" content="#f8f8f3" />
+    <link rel="icon" href="./favicon.svg" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Training Lab · 大模型训练场</title>
+  </head>
+  <body>
+    <header>
+      <div class="top">
+        <a class="brand" href="./"
+          ><img src="./favicon.svg" alt="" width="34" height="34" /><strong
+            >Training Lab</strong
+          ></a
+        >
+        <nav class="tools">
+          <a id="return-course" href="./">Guided lessons</a>
+          <a id="games" href="/games/">Games</a
+          ><button id="guide">Field notes</button
+          ><button id="language">中文</button>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <nav class="chapters" id="chapters" aria-label="Experiments"></nav>
+      <section class="hero">
+        <div>
+          <p class="kicker" id="kicker"></p>
+          <h1 id="title"></h1>
+          <p id="brief"></p>
+        </div>
+        <span class="progress" id="progress"></span>
+      </section>
+      <div class="bench">
+        <section class="panel">
+          <div class="panel-head">
+            <h2 id="inputs-title"></h2>
+            <span class="small" id="method"></span>
+          </div>
+          <div class="panel-body">
+            <div class="signal">
+              <small id="prompt-label"></small>
+              <p id="prompt"></p>
+            </div>
+            <div id="inputs"></div>
+            <div class="actions">
+              <button id="step" class="primary"></button
+              ><button id="sample"></button><button id="reset"></button>
+            </div>
+          </div>
+        </section>
+        <section class="panel">
+          <div class="panel-head">
+            <h2 id="policy-title"></h2>
+            <span id="step-num" class="small"></span>
+          </div>
+          <div class="panel-body">
+            <p class="muted small" id="chart-caption"></p>
+            <div class="chart" id="chart"></div>
+            <div id="stats" class="stats"></div>
+            <div id="history"></div>
+          </div>
+        </section>
+      </div>
+      <section class="goal">
+        <p class="kicker" id="goal-label"></p>
+        <h2 id="goal-text"></h2>
+        <p id="feedback" aria-live="polite"></p>
+        <div id="advance" class="actions"></div>
+      </section>
+      <section class="notes" id="notes"></section>
+    </main>
+    <footer>
+      <a href="/games/neural-atelier/">Neural Atelier · 神经工坊</a
+      ><a href="https://github.com/chainhelen/training-lab">GitHub</a>
+    </footer>
+    <dialog id="manual">
+      <button class="close" id="close" aria-label="Close">×</button>
+      <div id="guide-body"></div>
+    </dialog>
+    <script type="module" src="./src/app.mjs"></script>
+  </body>
+</html>
